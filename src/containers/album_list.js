@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { selectAlbum } from '../actions/index';
+import { bindActionCreators } from 'redux';
+
 
 class AlbumList extends Component {
   renderList() {
     return this.props.albums.map((album) => {
       return (
-        <li key={album.id}>{album.name}</li>
+        <li
+          key={album.id}
+          onClick={() => {this.props.selectAlbum(album)}}>
+          {album.name}</li>
       );
     });
   }
@@ -26,4 +32,8 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(AlbumList);
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ selectAlbum: selectAlbum }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AlbumList);
