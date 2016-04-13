@@ -1,8 +1,8 @@
-export default function() {
-  return [
-    { id: '1', name: 'Profile Pictures' },
-    { id: '2', name: 'Black and White' },
-    { id: '3', name: 'Color' },
-    { id: '4', name: 'Life' }
-  ]
+export default function(state = null, action) {
+  switch (action.type) {
+    case 'GET_ALBUMS':
+      var res = action.payload.data.albums.data;
+      return res;
+  }
+  return state;
 }
